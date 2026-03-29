@@ -5,6 +5,9 @@ const app = express();
 // DB connection
 require('./db');
 
+// Middleware
+app.use(express.json());
+
 // port 5000
 const PORT = process.env.PORT || 5000;
 
@@ -12,6 +15,9 @@ const PORT = process.env.PORT || 5000;
 app.get('/', (req, res) => {
     res.send('Hello World! Le serveur de la plateforme B2B est en ligne.');
 });
+
+// Auth Routes
+app.use('/api/auth', require('./routes/authRoutes'));
 
 // Start server
 app.listen(PORT, () => {
